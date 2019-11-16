@@ -1,3 +1,0 @@
-## Interestify-
-
-Python app.
