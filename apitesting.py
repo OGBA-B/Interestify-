@@ -3,6 +3,7 @@ import sklearn
 from twython import Twython
 import json
 import numpy as np
+import os
 
 # Gets user info from a list of tweets
 
@@ -25,10 +26,10 @@ data1 = response.json().get('message')
 # print('data', data['iss_position']['latitude'], data1)
 
 credentials = {}
-credentials['CONSUMER_KEY'] = "mmrICAk05jsj5NpbbD4Eek7wO"
-credentials['CONSUMER_SECRET'] = "vZRC0EBOSYzcQvjwv63bhCxpb4tgDku7RlaEmtnBHdixIQ6rTh"
-credentials['ACCESS_TOKEN'] = "182173029-biGHnuFDPiwZwikUQTWtYFG5A9VDaWj9QQf9mSmc"
-credentials['TOKEN_SECRET'] = "pohXlFohtVM64AgIUD32ABV7sjFaCkzE6ejiYpaGSMsPf"
+credentials['CONSUMER_KEY'] = os.environ.get('INTERESTIFY_CONSUMER_KEY', '')
+credentials['CONSUMER_SECRET'] = os.environ.get('INTERESTIFY_CONSUMER_SECRET', '')
+credentials['ACCESS_TOKEN'] = os.environ.get('INTERESTIFY_ACCESS_TOKEN', '')
+credentials['TOKEN_SECRET'] = os.environ.get('INTERESTIFY_TOKEN_SECRET', '')
 
 # Save the credentials object to file
 with open("twitter_credentials.json", "w") as credentialsFile:
