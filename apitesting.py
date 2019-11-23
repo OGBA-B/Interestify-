@@ -50,7 +50,6 @@ tweet_list = []
 try:
     for result in results:
         tweet_list.append(result)
-        print(1)
 except:
     pass
 
