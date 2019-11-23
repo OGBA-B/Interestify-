@@ -47,8 +47,11 @@ results = twitter.cursor(twitter.search, q='Game of Thrones', result_type='popul
 followers = twitter.get_followers_list(screen_name="pewdiepie")
 tweet_list = []
 
-for result in results:
-    tweet_list.append(result)
+try:
+    for result in results:
+        tweet_list.append(result)
+except:
+    pass
 
 users = get_users(tweet_list)
 
