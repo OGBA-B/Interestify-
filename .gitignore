@@ -1,0 +1,5 @@
+.vscode/
+
+# python environment folders
+env/
+venv/
