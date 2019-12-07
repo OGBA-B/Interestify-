@@ -4,19 +4,26 @@ An application that uses Twitter data to determine user interest in a particular
 ## Getting started
 
 ### Setting up Backend
-Setup virtual environment.
+Install pipenv
 ```bash
-python3 -m venv env/
+brew install pipenv
 ```
-Activate the virtual environment and install the project dependencies. When the environment is active you should see the `env` at the start of the command prompt
+Create virtual environment
 ```bash
-source env/bin/activate
-pip3 install -r requirements.txt
+pipenv --three
 ```
-#### Adding/Updating packages
-When new python packages are installed or existing packages are update, we need to update the `requirements.txt` folder.
+Install project dependencies
 ```bash
-pip3 freeze > requirements.txt
+pipenv install --dev
+```
+Activate virtual environment
+```bash
+pipenv shell
+```
+#### Adding/Updating python packages
+When installing new packages, use `pipenv` when install new packages
+```bash
+pipenv install colors
 ```
 ### Setting up Frontend
 Install dependencies
@@ -37,7 +44,7 @@ To work on the frontend use the react development server, to avoid having to bui
 yarn start
 ```
  
-#### Adding/Updating packages
+#### Adding/Updating JS packages
 New packages should be installed with `yarn` which updated the `package.json` file and the lockfile `yarn.lock`
 ```bash
 # e.g. installing the package colors
