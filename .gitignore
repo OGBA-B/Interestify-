@@ -3,3 +3,8 @@
 # python environment folders
 env/
 venv/
+
+setup_secrets.sh
+.DS_Store
+.idea/
+__pycache__/
