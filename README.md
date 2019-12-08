@@ -32,6 +32,7 @@ nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('stopwords')
+# Use exit() or Ctrl-D to exit 
 ```
 #### Adding/Updating python packages
 When installing new packages, use `pipenv` when install new packages
