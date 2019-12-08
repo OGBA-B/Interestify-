@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+nltk = "*"
 
 [packages]
 astroid = "==2.3.3"
@@ -33,6 +34,7 @@ Flask = "==1.1.1"
 Jinja2 = "==2.10.3"
 MarkupSafe = "==1.1.1"
 Werkzeug = "==0.16.0"
+nltk = "*"
 
 [requires]
 python_version = "3.7"
