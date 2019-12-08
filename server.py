@@ -1,4 +1,4 @@
-from apitesting import TwitterApi as api
+import apitesting as api
 from flask import Flask, render_template
 
 app = Flask(__name__, static_folder="./client/build/static", template_folder="./client/build")
@@ -11,8 +11,7 @@ def index():
 
 @app.route("/search/<search_term>")
 def search_tweets(search_term=None):
-    r = api()
-    return r.get_popular_tweets(search_term)
+    return api.get_popular_tweets(search_term)
 
 
 if __name__ == "__main__":
