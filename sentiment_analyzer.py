@@ -32,7 +32,7 @@ def remove_noise(tweet_tokens, stop_words = ()):
 
 
 start_time = time.time()
-with open('test2_classifier', 'rb') as training_model:
+with open('trained_data', 'rb') as training_model:
     model = pickle.load(training_model)
 
     custom_tweet = "I @ and HATE you, why are you always mad, you make me feel sad and angry."
