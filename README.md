@@ -28,6 +28,10 @@ python3
 >>> import nltk
 # Download the sample tweets from the NLTK package
 >>> nltk.download('twitter_samples')
+>>> nltk.download('punkt')
+>>> nltk.download('wordnet')
+>>> nltk.download('averaged_perceptron_tagger')
+>>> nltk.download('stopwords')
 ```
 #### Adding/Updating python packages
 When installing new packages, use `pipenv` when install new packages
