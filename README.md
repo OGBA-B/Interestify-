@@ -23,6 +23,7 @@ pipenv shell
 #### Adding/Updating python packages
 When installing new packages, use `pipenv` when install new packages
 ```bash
+e.g. sample package called colors
 pipenv install colors --dev
 ```
 ### Setting up Frontend
