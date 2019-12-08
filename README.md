@@ -20,10 +20,24 @@ Activate virtual environment
 ```bash
 pipenv shell
 ```
+Download sample tweets from NLTK
+```python
+# Start an interative python session
+python3
+# import the nltk
+import nltk
+# Download the sample tweets from the NLTK package
+nltk.download('twitter_samples')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('stopwords')
+```
 #### Adding/Updating python packages
 When installing new packages, use `pipenv` when install new packages
 ```bash
-pipenv install colors
+# e.g. sample package called colors
+pipenv install colors --dev
 ```
 ### Setting up Frontend
 Install dependencies
