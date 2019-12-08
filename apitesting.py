@@ -5,62 +5,64 @@ import json
 import numpy as np
 import os
 
-# Gets user info from a list of tweets
 
-def get_users(tweets):
-    _users = []
-    for result in tweets:
-        _users.append(result.get("user"))
-    return _users
+class TwitterApi:
+    def __init__(self):
+        self.credentials = {}
+        self.credentials['CONSUMER_KEY'] = os.environ.get('INTERESTIFY_CONSUMER_KEY', '')
+        self.credentials['CONSUMER_SECRET'] = os.environ.get('INTERESTIFY_CONSUMER_SECRET', '')
+        self.credentials['ACCESS_TOKEN'] = os.environ.get('INTERESTIFY_ACCESS_TOKEN', '')
+        self.credentials['TOKEN_SECRET'] = os.environ.get('INTERESTIFY_TOKEN_SECRET', '')
 
+        self.twitter = Twython(app_key=self.credentials['CONSUMER_KEY'],
+                          app_secret=self.credentials['CONSUMER_SECRET'],
+                          oauth_token=self.credentials['ACCESS_TOKEN'],
+                          oauth_token_secret=self.credentials['TOKEN_SECRET']
+                          )
 
-response = requests.get("http://api.open-notify.org/iss-now.json")
-# Print the status code of the response.
-# print(response.status_code)
+    # Gets user info from a list of tweets
+    def get_users(self, tweets):
+        _users = []
+        for result in tweets:
+            _users.append(result.get("user"))
+        return _users
 
+    # Gets the followers of a twitter user
 
-# print('response ->', response.content)
+    def get_followers(self, screen_name):
+        followers = self.twitter.get_followers_list(screen_name=screen_name)
+        return followers.get("users")
 
-data = response.json()
-data1 = response.json().get('message')
-# print('data', data['iss_position']['latitude'], data1)
+    # Returns popular tweets
+    def get_popular_tweets(self, search_term):
+        results = self.twitter.cursor(self.twitter.search, q=search_term, result_type='popular')
+        list = []
+        try:
+            for result in results:
+                list.append(result)
+        except NameError:
+            print("Variable x is not defined")
+        except Exception as e: print(e)
 
-credentials = {}
-credentials['CONSUMER_KEY'] = os.environ.get('INTERESTIFY_CONSUMER_KEY', '')
-credentials['CONSUMER_SECRET'] = os.environ.get('INTERESTIFY_CONSUMER_SECRET', '')
-credentials['ACCESS_TOKEN'] = os.environ.get('INTERESTIFY_ACCESS_TOKEN', '')
-credentials['TOKEN_SECRET'] = os.environ.get('INTERESTIFY_TOKEN_SECRET', '')
-
-# Save the credentials object to file
-with open("twitter_credentials.json", "w") as credentialsFile:
-    json.dump(credentials, credentialsFile)
-
-
-twitter = Twython(app_key=credentials['CONSUMER_KEY'],
-                  app_secret=credentials['CONSUMER_SECRET'],
-                  oauth_token=credentials['ACCESS_TOKEN'],
-                  oauth_token_secret=credentials['TOKEN_SECRET']
-                  )
-
-results = twitter.cursor(twitter.search, q='Game of Thrones', result_type='popular')
-
-followers = twitter.get_followers_list(screen_name="pewdiepie")
-tweet_list = []
-
-try:
-    for result in results:
-        tweet_list.append(result)
-except:
-    pass
-
-users = get_users(tweet_list)
-
-for follower in followers:
-    print(follower)
-
-for result in tweet_list:
-    print(result.get("user"))
+        return str(list)
 
 
-# print(users[0].get("id"), users[0].get("screen_name"), users[0].get("followers_count"))
-# searchResults = twitter.search(q='python', result_type='popular')
+    #TESTS
+
+    # tweet_list = []
+    # results = get_popular_tweets("john boyega")
+    #print(results)
+
+    # users = get_users(tweet_list)
+    # followers = get_followers("pewdiepie")
+
+    # for follower in followers:
+    #     print(follower)
+
+    # for result in tweet_list:
+    #     print(result.get(""))
+
+    # print(followers)
+
+
+    # print(users[0].get("id"), users[0].get("screen_name"), users[0].get("followers_count"))
