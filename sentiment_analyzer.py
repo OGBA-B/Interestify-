@@ -32,18 +32,15 @@ def remove_noise(tweet_tokens, stop_words = ()):
 
 
 start_time = time.time()
-with open('test2_classifier', 'rb') as training_model:
+with open('trained_data', 'rb') as training_model:
     model = pickle.load(training_model)
 
     custom_tweet = "I @ and HATE you, why are you always mad, you make me feel sad and angry."
 
 
-
-
-
 def Analyzer(custom_tweet):
     custom_tokens = remove_noise(word_tokenize(custom_tweet))
-    print(custom_tweet, model.classify(dict([token, True] for token in custom_tokens)))
+    print(model.classify(dict([token, True] for token in custom_tokens)))
     print(time.time() - start_time)
 
 if __name__ == "__main__":
