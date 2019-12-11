@@ -1,0 +1,68 @@
+@import './variables';
+
+.App {
+  text-align: center;
+  padding: 20px;
+
+  // .App-header {
+  //   background-color: #282c34;
+  //   min-height: 100vh;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   font-size: calc(10px + 2vmin);
+  //   color: white;
+  
+  //   .App-logo {
+  //     height: 40vmin;
+  //   }
+  // }
+  
+  .App-link {
+    color: #09d3ac;
+  }
+
+  .MuiTable-root {
+    .MuiTableBody-root {
+      .MuiTableRow-root {
+        &:hover {
+          background-color: $table-row-hover-color;
+        }
+
+        .MuiTableCell-root {
+          .MuiIconButton-root {
+            .MuiIconButton-label {
+              &:hover {
+                color: $table-action-btn-hover-color;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .MuiTableHead-root {
+      .MuiTableRow-head {
+        background-color: $table-header-background-color;
+  
+        th {
+          color: $table-header-font-color;
+          font-weight: bolder;
+        }
+        
+        td {
+          color: $table-body-font-color;
+        }
+      }
+    }
+
+    .light-row {
+      background-color: $table-row-secondary;
+    }
+
+    .dark-row {
+      background-color: $table-row-primary;
+    }
+  }
+}

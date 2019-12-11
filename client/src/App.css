@@ -1,22 +1,31 @@
 .App {
   text-align: center;
+  padding: 20px;
 }
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
+.App .App-link {
   color: #09d3ac;
 }
+.App .MuiTable-root .MuiTableBody-root .MuiTableRow-root:hover {
+  background-color: #BDBDBD;
+}
+.App .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root .MuiIconButton-root .MuiIconButton-label:hover {
+  color: #82172B;
+}
+.App .MuiTable-root .MuiTableHead-root .MuiTableRow-head {
+  background-color: #82172B;
+}
+.App .MuiTable-root .MuiTableHead-root .MuiTableRow-head th {
+  color: #F0F0F0;
+  font-weight: bolder;
+}
+.App .MuiTable-root .MuiTableHead-root .MuiTableRow-head td {
+  color: #000000;
+}
+.App .MuiTable-root .light-row {
+  background-color: #F0F0F0;
+}
+.App .MuiTable-root .dark-row {
+  background-color: #9E9E9E;
+}
+
+/*# sourceMappingURL=App.css.map */

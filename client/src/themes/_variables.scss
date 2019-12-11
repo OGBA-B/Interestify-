@@ -1,0 +1,20 @@
+// COLOR SELECTION
+$interestify-blue: #1975B3;
+$interestify-lightgrey: #F0F0F0;
+$interestify-grey: #BDBDBD;
+$interestify-black: #000000;
+$interestify-darkergrey: #9E9E9E;
+$interestify-velvet: #82172B;
+
+// APP
+$interestify-primary: $interestify-velvet;
+
+// COMPONENTS
+// table
+$table-row-primary: $interestify-darkergrey;
+$table-row-secondary: $interestify-lightgrey;
+$table-header-font-color: $interestify-lightgrey;
+$table-header-background-color: $interestify-primary;
+$table-body-font-color : $interestify-black;
+$table-row-hover-color: $interestify-grey;
+$table-action-btn-hover-color: $interestify-primary;
