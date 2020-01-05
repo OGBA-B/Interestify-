@@ -1,20 +1,23 @@
 // COLOR SELECTION
 $interestify-blue: #1975B3;
 $interestify-lightgrey: #F0F0F0;
-$interestify-grey: #BDBDBD;
+$interestify-grey: #CFCFCF;
 $interestify-black: #000000;
-$interestify-darkergrey: #9E9E9E;
+$interestify-darkgrey: #BFBFBF;
 $interestify-velvet: #82172B;
+$interestify-pink: #CF7D8C;
 
 // APP
 $interestify-primary: $interestify-velvet;
+$interestify-font-color: $interestify-black;
 
 // COMPONENTS
 // table
-$table-row-primary: $interestify-darkergrey;
+$table-row-primary: $interestify-darkgrey;
 $table-row-secondary: $interestify-lightgrey;
 $table-header-font-color: $interestify-lightgrey;
 $table-header-background-color: $interestify-primary;
-$table-body-font-color : $interestify-black;
 $table-row-hover-color: $interestify-grey;
 $table-action-btn-hover-color: $interestify-primary;
+$table-footer-background-color: $interestify-pink;
+$box-shadow: 0 5px 15px 0;

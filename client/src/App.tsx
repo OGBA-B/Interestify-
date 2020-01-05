@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import InterestifyTable from './components/InterestifyTable';
 
@@ -11,27 +10,25 @@ function App() {
   ];
   var body = [ 
     { 
-      col2: 'stop',
-      col1: 'start', 
+      col2: 'apple',
+      col1: 'breakfast', 
       actions: [ 
         { name: 'add', icon: 'add', click: () => { console.log('add clicked') } }, 
         { name: 'delete', icon: 'delete', click: () => { console.log('delete clicked') } }
       ]
     },
-    { col3: 'stop', col2: 'start'},
-    { col2: 'stop', col1: 'start'},
-    { col1: 'stop', col2: 'start', actions: [ { name: 'add', icon: 'delete' } ] }
+    { col3: 'stop', col2: 'poundo'},
+    { col2: 'beans', col1: 'lunch'},
+    { col1: 'dinner', col2: 'rice', actions: [ { name: 'add', icon: 'delete' } ] }
   ];
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <h1>Interestify</h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          React Frontend
-        </p>
-      </header> */}
-      <InterestifyTable header={ header } body={ body } striped />
+      <InterestifyTable header={ header } body={ body } striped sortable missingValue="N/A"
+                        pagination={ {
+                          rowsPerPageOptions: [1, 3, 5],
+                          rowsPerPage: 3,
+                        } }
+                        footer={ <div>Lorem Ipsum is simply dummy text of the printing.</div> } />
     </div>
   );
 }

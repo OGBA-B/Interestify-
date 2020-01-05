@@ -3,24 +3,14 @@
 .App {
   text-align: center;
   padding: 20px;
-
-  // .App-header {
-  //   background-color: #282c34;
-  //   min-height: 100vh;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
-  //   font-size: calc(10px + 2vmin);
-  //   color: white;
-  
-  //   .App-logo {
-  //     height: 40vmin;
-  //   }
-  // }
+  color: $interestify-font-color;
   
   .App-link {
     color: #09d3ac;
+  }
+
+  .elevated-table {
+    box-shadow: $box-shadow;
   }
 
   .MuiTable-root {
@@ -49,10 +39,12 @@
         th {
           color: $table-header-font-color;
           font-weight: bolder;
-        }
-        
-        td {
-          color: $table-body-font-color;
+
+          .MuiTableSortLabel-root:hover, .MuiTableSortLabel-root.MuiTableSortLabel-active {
+            &, svg {
+              color: $table-header-font-color;
+            }
+          }
         }
       }
     }
@@ -64,5 +56,24 @@
     .dark-row {
       background-color: $table-row-primary;
     }
+  }
+
+  .MuiTableFooter-root {
+    &::before {
+      content: '.';
+    }
+
+    .footer-row {
+      background-color: $table-footer-background-color;
+      
+      td {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .pagination-actions-root {
+    display: inline-flex;
+    list-style: none;
   }
 }
