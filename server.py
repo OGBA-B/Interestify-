@@ -1,5 +1,5 @@
 import apitesting as api
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, json, request
 
 app = Flask(__name__, static_folder="./client/build/static", template_folder="./client/build")
 
@@ -11,7 +11,18 @@ def index():
 
 @app.route("/search/<search_term>")
 def search_tweets(search_term=None):
-    return api.get_popular_tweets(search_term)
+    return jsonify(api.get_popular_tweets(search_term))
+
+
+@app.route("/followers/<screen_name>")
+def get_followers(screen_name=None):
+    return jsonify(api.get_followers(screen_name))
+
+
+@app.route("/asearch/<screen_name>")
+def test(screen_name=None):
+    value = request.get_json()
+    return str(value["name"])
 
 
 if __name__ == "__main__":
