@@ -18,6 +18,7 @@ twitter = Twython(app_key=credentials['CONSUMER_KEY'],
                   oauth_token_secret=credentials['TOKEN_SECRET']
                   )
 
+
 # Gets user info from a list of tweets
 def get_users(tweets):
     _users = []
@@ -25,8 +26,8 @@ def get_users(tweets):
         _users.append(result.get("user"))
     return _users
 
-# Gets the followers of a twitter user
 
+# Gets the followers of a twitter user
 def get_followers(screen_name):
     followers = twitter.get_followers_list(screen_name=screen_name)
     list = []
@@ -37,6 +38,7 @@ def get_followers(screen_name):
         print(e)
     return (list)
 
+
 # Returns popular tweets
 def get_popular_tweets(search_term):
     results = twitter.cursor(twitter.search, q=search_term, result_type='popular')
@@ -45,7 +47,8 @@ def get_popular_tweets(search_term):
         for result in results:
             list.append(result)
     except Exception as e: print(e)
-    return (list)
+    return list
+
 
 # Returns tweets with
 def search_tweets(search_term,apply_sentiment=False,min_confidence=0,limit=100):
@@ -53,7 +56,6 @@ def search_tweets(search_term,apply_sentiment=False,min_confidence=0,limit=100):
     list = []
     try:
         for result in results:
-
             list.append(result)
     except Exception as e: print(e)
     return (list)
