@@ -18,6 +18,7 @@ twitter = Twython(app_key=credentials['CONSUMER_KEY'],
                   oauth_token_secret=credentials['TOKEN_SECRET']
                   )
 
+
 # Gets user info from a list of tweets
 def get_users(tweets):
     _users = []
@@ -25,11 +26,18 @@ def get_users(tweets):
         _users.append(result.get("user"))
     return _users
 
-# Gets the followers of a twitter user
 
+# Gets the followers of a twitter user
 def get_followers(screen_name):
     followers = twitter.get_followers_list(screen_name=screen_name)
-    return followers.get("users")
+    list = []
+    try:
+        for follower in followers.get("users"):
+            list.append(follower.get("name"))
+    except Exception as e:
+        print(e)
+    return (list)
+
 
 # Returns popular tweets
 def get_popular_tweets(search_term):
@@ -38,12 +46,19 @@ def get_popular_tweets(search_term):
     try:
         for result in results:
             list.append(result)
-    except NameError:
-        print("Variable x is not defined")
     except Exception as e: print(e)
+    return list
 
-    return str(list)
 
+# Returns tweets with
+def search_tweets(search_term,apply_sentiment=False,min_confidence=0,limit=100):
+    results = twitter.cursor(twitter.search, q=search_term, result_type='popular')
+    list = []
+    try:
+        for result in results:
+            list.append(result)
+    except Exception as e: print(e)
+    return (list)
 
 #TESTS
 
@@ -53,9 +68,7 @@ def get_popular_tweets(search_term):
 
 # users = get_users(tweet_list)
 # followers = get_followers("pewdiepie")
-
-# for follower in followers:
-#     print(follower)
+# print(followers)
 
 # for result in tweet_list:
 #     print(result.get(""))
