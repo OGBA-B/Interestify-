@@ -15,10 +15,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+    - name: Install pipenv
+      uses: dschep/install-pipenv-action@v1 
     - name: Install python dependencies
-      run: |
+      run: 
         python --version
-        apt install pipenv
         pipenv install --dev
     - name: Install node dependencies
       run: |
