@@ -9,11 +9,9 @@ CORS(app)
 def index():
     return render_template("index.html", token="Sample Token")
 
-
 @app.route("/search/<search_term>")
 def search_tweets(search_term=None):
     return api.get_popular_tweets(search_term)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
