@@ -18,9 +18,10 @@ jobs:
     - name: Install pipenv
       uses: dschep/install-pipenv-action@v1 
     - name: Install python dependencies
-      run: 
+      run: |
         python --version
         pipenv install --dev
+        pytest --version
     - name: Install node dependencies
       run: |
         pwd
