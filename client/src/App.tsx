@@ -1,6 +1,8 @@
 import * as React from 'react';
 import './App.css';
 import InterestifyTable from './components/InterestifyTable';
+// import * as apiService from './services/ApiService';
+import ApiService  from './services/ApiService';
 
 function App() {
   var header = [
@@ -21,6 +23,11 @@ function App() {
     { col2: 'beans', col1: 'lunch'},
     { col1: 'dinner', col2: 'rice', actions: [ { name: 'add', icon: 'delete' } ] }
   ];
+  var data = [];
+  const apiService = new ApiService();
+  apiService.searchTweets('migos').then(res => {
+    console.log('res >>', JSON.parse(res.data));
+  }) 
   return (
     <div className="App">
       <InterestifyTable header={ header } body={ body } striped sortable missingValue="N/A"

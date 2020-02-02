@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 nltk = "*"
+pylint = "<2.0.0"
 
 [packages]
 astroid = "==2.3.3"

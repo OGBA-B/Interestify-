@@ -64,7 +64,6 @@ const ActionIcons: {[index: string]: any} = {
 class InterestifyTable extends React.Component<TableProps, TableState> {
 	constructor(props: TableProps) {
 		super(props);
-		// var customFooter = (this.props.footer) ? { ...this.props.footer, colSpan: this.props.header.length + 1 } : {};
 		this.state = {
 			header: [],
 			body: [],
@@ -73,7 +72,6 @@ class InterestifyTable extends React.Component<TableProps, TableState> {
 			bodyData: this.props.body,
 			footerData: {
 				customFooter: (this.props.footer) ? this.props.footer : {},
-				// customFooter: customFooter,
 				pagination: {}
 			},
 			sortBy: {
