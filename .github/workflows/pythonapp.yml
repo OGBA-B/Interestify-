@@ -1,0 +1,32 @@
+name: Python application
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Setup Node v10
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install python dependencies
+      run: |
+        python --version
+        apt install pipenv
+        pipenv install --dev
+    - name: Install node dependencies
+      run: |
+        pwd
+        node --version
+        cd client/
+        yarn install
+        yarn build
+    - name: Run python tests
+      run: |
+        pytest
