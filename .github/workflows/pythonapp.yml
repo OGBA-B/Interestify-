@@ -1,7 +1,5 @@
 name: Python application
-
 on: [push, pull_request]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,21 +21,20 @@ jobs:
       run: |
         python --version
         pipenv --version
-        pipenv lock -r > requirements.txt
+        echo Generate requirements and install packages
+        pipenv lock --requirements > requirements.txt
+        cat requirements.txt
+        pip install --requirements requirements.txt
+        echo Generate dev requirements and install dev packages
+        pipenv lock --requirements --dev > requirements.txt
         cat requirements.txt
         pip install -r requirements.txt
-        pipenv lock -dr > requirements.txt
-        cat requirements.txt
-        pip install -r requirements.txt
-        pytest --version
-    - name: Install node dependencies
+    - name: Install node dependencies & build index file
       run: |
-        pwd
         node --version
         cd client/
         yarn install
         yarn build
     - name: Run python tests
       run: |
-        pwd
         pytest
