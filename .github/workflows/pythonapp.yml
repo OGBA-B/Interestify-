@@ -16,9 +16,13 @@ jobs:
       with:
         node-version: '10.x'
     - name: Install pipenv
-      uses: dschep/install-pipenv-action@v1 
+      uses: dschep/install-pipenv-action@v1
+      with:
+        version: 2018.11.26
     - name: Install python dependencies
       run: |
+        pipenv --version
+        pipenv shell
         python --version
         pipenv install --dev
         pytest --version
@@ -31,4 +35,5 @@ jobs:
         yarn build
     - name: Run python tests
       run: |
+        pwd
         pytest
