@@ -13,6 +13,15 @@
     box-shadow: $box-shadow;
   }
 
+  .btn-primary {
+    background-color: $interestify-primary;
+    color: $interestify-primary-font-color;
+
+    &:hover {
+      background-color: $interestify-primary-hover-color;
+    }
+  }
+
   .MuiTable-root {
     .MuiTableBody-root {
       .MuiTableRow-root {
@@ -63,7 +72,7 @@
       content: '.';
     }
 
-    .footer-row {
+    .footer-row:not(:last-child) {
       background-color: $table-footer-background-color;
       
       td {

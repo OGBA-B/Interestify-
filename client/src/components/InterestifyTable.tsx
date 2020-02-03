@@ -22,7 +22,8 @@ interface TableProps {
 	sortable?: boolean,
 	missingValue?: string,
 	footer?: {},
-	elevated?: boolean
+	elevated?: boolean,
+	sort?: SortBy
 }
 
 interface TableState {
@@ -71,7 +72,7 @@ class InterestifyTable extends React.Component<TableProps, TableState> {
 			headerData: this.props.header,
 			bodyData: this.props.body,
 			footerData: {
-				customFooter: (this.props.footer) ? this.props.footer : {},
+				customFooter: (this.props.footer) ? this.props.footer : [],
 				pagination: {}
 			},
 			sortBy: {
@@ -86,23 +87,29 @@ class InterestifyTable extends React.Component<TableProps, TableState> {
 	}
 
 	componentDidMount() {
-		this.setState({
-			header: this.getHeader() // set header state
-		}, () => {
-			if (this.props.pagination) { // then if table is pagenated set pagination state data
-				this.setState({
-					footerData: {
-						customFooter: this.state.footerData.customFooter,
-						pagination: this.getPagination()
-					}
+		if (this.props.header.length > 0) {
+			this.setState({
+				header: this.getHeader() // set header state
+			}, () => {
+				if (this.props.pagination) { // then if table is paginated set pagination state data
+					this.setState({
+						footerData: {
+							customFooter: this.state.footerData.customFooter,
+							pagination: this.getPagination()
+						}
+					});
+				}
+				var defaultSort = {
+					id: (this.props.sort) ? this.props.sort.id : this.props.header[0].id,
+					order: (this.props.sort) ? this.props.sort.order : undefined
+				}
+				if (this.props.sortable) this.sortTableBy(defaultSort.id, defaultSort.order); // sort table if table is sortable
+				else this.setState({ // else set body and footer state
+					body: this.getBody(),
+					footer: this.getFooter()
 				});
-			}
-			if (this.props.sortable) this.sortTableBy(this.props.header[0].id); // sort table if table is sortable
-			else this.setState({ // else set body and footer state
-				body: this.getBody(),
-				footer: this.getFooter()
 			});
-		});
+		}
 	}
 
 	/**
@@ -181,8 +188,8 @@ class InterestifyTable extends React.Component<TableProps, TableState> {
 	 * 			pagination if enabled
 	 */
 	getFooter = (): {} => {
-		var customFooter = <TableCell colSpan={ this.props.header.length } children={ this.state.footerData.customFooter } />;
-		var combinedFooter: any[] = [ customFooter ];
+		var combinedFooter: any[] = [];
+		if (this.props.footer) combinedFooter.push(<TableCell colSpan={ this.props.header.length } children={ this.state.footerData.customFooter } />);
 		if (this.props.pagination) combinedFooter.push(this.state.footerData.pagination);
 		return combinedFooter.map((row: {}, index: number) => (
 			<TableRow className={ (index === 0) ? 'footer-row' : '' } key={ index } children={ row } />
@@ -320,16 +327,18 @@ class InterestifyTable extends React.Component<TableProps, TableState> {
 	 * 
 	 * @param id key of object to sort by
 	 */
-	sortTableBy = (id: string): void => {
+	sortTableBy = (id: string, order?: 'asc' | 'desc' | undefined): void => {
 		var prevSortId = this.state.sortBy.id;
 		var body = [ ...this.props.body ];
 		var sortBy: SortBy = {
 			id: id,
-			order: undefined
+			order: order ? order : undefined
 		}
 		// switch sort direction based on last sort
-		if (prevSortId === id) sortBy.order = ('asc' === this.state.sortBy.order) ? 'desc' : 'asc';
-		else sortBy.order = 'asc';
+		if (!order) {
+			if (prevSortId === id) sortBy.order = ('asc' === this.state.sortBy.order) ? 'desc' : 'asc';
+			else sortBy.order = 'asc';
+		}
 		body = _.orderBy(body, id, sortBy.order);
 		this.setState({
 			bodyData: body,

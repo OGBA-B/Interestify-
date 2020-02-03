@@ -9,6 +9,13 @@
 .App .elevated-table {
   box-shadow: 0 5px 15px 0;
 }
+.App .btn-primary {
+  background-color: #82172B;
+  color: #F0F0F0;
+}
+.App .btn-primary:hover {
+  background-color: #CF7D8C;
+}
 .App .MuiTable-root .MuiTableBody-root .MuiTableRow-root:hover {
   background-color: #CFCFCF;
 }
@@ -34,10 +41,10 @@
 .App .MuiTableFooter-root::before {
   content: ".";
 }
-.App .MuiTableFooter-root .footer-row {
+.App .MuiTableFooter-root .footer-row:not(:last-child) {
   background-color: #CF7D8C;
 }
-.App .MuiTableFooter-root .footer-row td {
+.App .MuiTableFooter-root .footer-row:not(:last-child) td {
   font-weight: 600;
 }
 .App .pagination-actions-root {

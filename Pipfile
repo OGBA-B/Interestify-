@@ -5,7 +5,6 @@ verify_ssl = true
 
 [dev-packages]
 nltk = "*"
-pylint = "<2.0.0"
 
 [packages]
 astroid = "==2.3.3"
@@ -31,12 +30,12 @@ twython = "==3.7.0"
 typed-ast = "==1.4.0"
 urllib3 = "==1.25.7"
 wrapt = "==1.11.2"
-Flask = "==1.1.1"
 Jinja2 = "==2.10.3"
-MarkupSafe = "==1.1.1"
 Werkzeug = "==0.16.0"
 nltk = "*"
 flask-cors = "*"
+markupsafe = "~=1.1.1"
+flask = "~=1.1.1"
 
 [requires]
 python_version = "3.7"
