@@ -21,10 +21,11 @@ jobs:
         version: 2018.11.26
     - name: Install python dependencies
       run: |
-        pipenv --version
-        pipenv shell
         python --version
-        pipenv install --dev
+        pipenv --version
+        pipenv lock --requirements > requirements.txt
+        cat requirements.txt
+        pip install -r requirements.txt
         pytest --version
     - name: Install node dependencies
       run: |
