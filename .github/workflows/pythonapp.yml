@@ -1,0 +1,40 @@
+name: Python application
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Setup Node v10
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install pipenv
+      uses: dschep/install-pipenv-action@v1
+      with:
+        version: 2018.11.26
+    - name: Install python dependencies
+      run: |
+        python --version
+        pipenv --version
+        echo Generate requirements and install packages
+        pipenv lock --requirements > requirements.txt
+        cat requirements.txt
+        pip install --requirement requirements.txt
+        echo Generate dev requirements and install dev packages
+        pipenv lock --requirements --dev > requirements.txt
+        cat requirements.txt
+        pip install --requirement requirements.txt
+    - name: Install node dependencies & build index file
+      run: |
+        node --version
+        cd client/
+        yarn install
+        yarn build
+    - name: Run python tests
+      run: |
+        pytest

@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 nltk = "*"
+pytest = "*"
 
 [packages]
 astroid = "==2.3.3"
