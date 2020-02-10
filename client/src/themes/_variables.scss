@@ -6,9 +6,12 @@ $interestify-black: #000000;
 $interestify-darkgrey: #BFBFBF;
 $interestify-velvet: #82172B;
 $interestify-pink: #CF7D8C;
+$interestify-paper: #F7F7F7;
+$interestify-white: #FFFFFF;
 
 // APP
 $interestify-primary: $interestify-velvet;
+$interestify-secondary: $interestify-pink;
 $interestify-font-color: $interestify-black;
 $interestify-primary-font-color: $interestify-lightgrey;
 $interestify-primary-hover-color: $interestify-pink;
@@ -23,3 +26,6 @@ $table-row-hover-color: $interestify-grey;
 $table-action-btn-hover-color: $interestify-primary;
 $table-footer-background-color: $interestify-pink;
 $box-shadow: 0 5px 15px 0;
+
+// panel
+$panel-background-color: $interestify-paper;

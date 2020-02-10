@@ -2,7 +2,6 @@
 
 .App {
   text-align: center;
-  padding: 20px;
   color: $interestify-font-color;
   
   .App-link {
@@ -19,6 +18,25 @@
 
     &:hover {
       background-color: $interestify-primary-hover-color;
+    }
+  }
+
+  .dialogLoader {
+    color: $interestify-primary;
+    position: relative;
+  }
+
+  .panel {
+    background-color: $panel-background-color;
+
+    &::-webkit-scrollbar {
+        width: 7px;
+      height: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $interestify-secondary;
+      border-radius: 5px;
     }
   }
 
