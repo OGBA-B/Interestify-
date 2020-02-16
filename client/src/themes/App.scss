@@ -7,6 +7,9 @@
   .App-link {
     color: #09d3ac;
   }
+  .applet-title {
+    color: $interestify-primary;
+  }
 
   .elevated-table {
     box-shadow: $box-shadow;
@@ -99,8 +102,13 @@
     }
   }
 
-  .pagination-actions-root {
-    display: inline-flex;
-    list-style: none;
+  .MuiTablePagination-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    float: right;
+
+    p:first-of-type {
+      margin-left: auto;
+    }
   }
 }

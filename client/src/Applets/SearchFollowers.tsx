@@ -1,18 +1,18 @@
 import React, { useReducer, createContext } from 'react';
-import InterestifyTable from '../components/FunctionalTable';
-import { SearchState, searchReducer } from '../common/Reducers';
-import ApiService  from '../services/ApiService';
 import { Grid } from '@material-ui/core';
+import InterestifyTable from '../components/FunctionalTable';
+import ApiService  from '../services/ApiService';
 import Applet from '../components/Applet';
+import { searchReducer, SearchState } from '../common/Reducers';
 import SearchForm from '../components/SearchForm';
 
-interface SearchTweetsProps {
+interface SearchFollowersProps {
     id?: string
     width?: string,
     height?: string,
 }
 
-const SearchTweets = (props: SearchTweetsProps): JSX.Element => {
+const SearchFollowers = (props: SearchFollowersProps) => {
     const apiService = new ApiService();
 
     const { id, width, height } = props;
@@ -23,10 +23,7 @@ const SearchTweets = (props: SearchTweetsProps): JSX.Element => {
         query: '',
         tableData: {
             header: [
-                { id: 'tweet', title: 'Tweet' },
-                { id: 'retweetCount', title: 'Retweets' },
                 { id: 'screenName', title: 'Screen\u00a0Name' },
-                { id: 'location', title: 'Location' }
             ],
             body: []
         },
@@ -37,31 +34,28 @@ const SearchTweets = (props: SearchTweetsProps): JSX.Element => {
     const [ state, dispatch ] = useReducer(searchReducer, initialState);
     
     const StateContext = createContext(state); // context containing state
-    
+
     // search logic
-    const run = () => {
+    const run = (): void => {
         if (state.query !== '') {
-            apiService.searchTweets(state.query).then(res => {
+            apiService.getFollowers(state.query).then(res => {
                 var body: any[] = [];
                 res.data.forEach((obj: any) => {
                     body.push({
-                    tweet: obj.text,
-                    retweetCount: obj.retweet_count,
-                    screenName: '@' + obj.user.screen_name,
-                    location: obj.user.location
+                        screenName: '@' + obj
                     });
                 });
-                
+
                 dispatch({ type: 'completeSearch', payload: { body } })
             }).catch(err => {
                 console.log(err);
                 dispatch({ type: 'error', payload: { error: err } });
             });
         }
-    };   
+    };
 
     return (
-        <Applet title="Search Tweets" id={ id } width={ width } height={ height } StateContext={ StateContext } run={ run }>
+        <Applet title="Search Followers" id={ id } width={ width } height={ height } StateContext={ StateContext } run={ run }>
             <Grid container spacing={ 2 }>
                 <Grid item xs={ 12 }>
                     <SearchForm searchKey={ state.searchKey } dispatch={ dispatch } />
@@ -71,7 +65,7 @@ const SearchTweets = (props: SearchTweetsProps): JSX.Element => {
                         state.tableData.body.length > 0 ? 
                         <InterestifyTable header={ state.tableData.header } body={ state.tableData.body } striped sortable missingValue="N/A"
                             pagination={ {
-                            rowsPerPageOptions: [5, 10, 15],
+                            rowsPerPageOptions: [ 5, 10, 15 ],
                             rowsPerPage: 5,
                             } }
                             sort={ {
@@ -86,4 +80,4 @@ const SearchTweets = (props: SearchTweetsProps): JSX.Element => {
     );
 }
 
-export default SearchTweets;
+export default SearchFollowers;

@@ -6,9 +6,8 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import * as _ from 'lodash';
-// import '../App.css';
 
-interface TableHeader {
+export interface TableHeader {
 	id: string,
 	title: string
 }
@@ -60,6 +59,7 @@ interface PaginationState {
 	currentPageIndex: number,
 	rowsPerPage: number
 }
+
 interface ReducerAction {
     type: string,
     payload: any
@@ -110,6 +110,12 @@ const tableReducer = (state: TableState, action: ReducerAction): TableState => {
                 },
                 bodyData: sortCollectionBy(state.bodyData, sortBy.id, sortBy.order),
             };
+
+        case 'initialSort':
+            return {
+                ...state,
+                bodyData: sortCollectionBy(state.bodyData, state.sortBy.id, state.sortBy.order)
+            }
         
         case 'updatePagination':
             return {
@@ -273,40 +279,35 @@ const InterestifyTable = (props: TableProps) => {
             // number of rows per page
             var rowsPerPage = (state.pagination) ? state.pagination.rowsPerPage : 0;
             return (
-                <ul className="pagination-actions-root">
-                    <li>
-                        <IconButton
-                            onClick={ () => { dispatch({ type: 'updatePagination', payload: { currentPageIndex: 0, rowsPerPage: rowsPerPage } }); } }
-                            disabled={ currentPageIndex <= 0 }
-                            aria-label="first  page">
-                                { <FirstPageIcon /> }
-                        </IconButton>
-                    </li>
-                    <li>
-                        <IconButton
-                            onClick={ () => { dispatch({ type: 'updatePagination', payload: { currentPageIndex: currentPageIndex - 1, rowsPerPage: rowsPerPage } }); } }
-                            disabled={ currentPageIndex <= 0 }
-                            aria-label="previous page">
-                                { <KeyboardArrowLeft /> }
-                        </IconButton>
-                    </li>
-                    <li>
-                        <IconButton
-                            onClick={ () => { dispatch({ type: 'updatePagination', payload: { currentPageIndex: currentPageIndex + 1, rowsPerPage: rowsPerPage } }); } }
-                            disabled={ currentPageIndex >= lastPageIndex }
-                            aria-label="next page">
-                                { <KeyboardArrowRight />}
-                        </IconButton>
-                    </li>
-                    <li>
-                        <IconButton
-                            onClick={ () => { dispatch({ type: 'updatePagination', payload: { currentPageIndex: lastPageIndex, rowsPerPage: rowsPerPage } }); } }
-                            disabled={ currentPageIndex >= lastPageIndex }
-                            aria-label="last page">
-                                { <LastPageIcon />  }
-                        </IconButton>
-                    </li>
-                </ul>
+                <div className="d-flex flex-row ml-auto">
+                    <IconButton
+                        onClick={ () => { dispatch({ type: 'updatePagination', payload: { currentPageIndex: 0, rowsPerPage: rowsPerPage } }); } }
+                        disabled={ currentPageIndex <= 0 }
+                        aria-label="first  page">
+                            { <FirstPageIcon /> }
+                    </IconButton>
+                
+                    <IconButton
+                        onClick={ () => { dispatch({ type: 'updatePagination', payload: { currentPageIndex: currentPageIndex - 1, rowsPerPage: rowsPerPage } }); } }
+                        disabled={ currentPageIndex <= 0 }
+                        aria-label="previous page">
+                            { <KeyboardArrowLeft /> }
+                    </IconButton>
+                
+                    <IconButton
+                        onClick={ () => { dispatch({ type: 'updatePagination', payload: { currentPageIndex: currentPageIndex + 1, rowsPerPage: rowsPerPage } }); } }
+                        disabled={ currentPageIndex >= lastPageIndex }
+                        aria-label="next page">
+                            { <KeyboardArrowRight />}
+                    </IconButton>
+            
+                    <IconButton
+                        onClick={ () => { dispatch({ type: 'updatePagination', payload: { currentPageIndex: lastPageIndex, rowsPerPage: rowsPerPage } }); } }
+                        disabled={ currentPageIndex >= lastPageIndex }
+                        aria-label="last page">
+                            { <LastPageIcon />  }
+                    </IconButton>
+                </div>
             );
         }
 
@@ -330,7 +331,8 @@ const InterestifyTable = (props: TableProps) => {
                                 page={ state.pagination.currentPageIndex }
                                 onChangePage={ $event => {} }
                                 onChangeRowsPerPage={ $event => { changeRowsPerPage($event, dispatch) } }
-                                ActionsComponent={ paginationNavActions }  />
+                                ActionsComponent={ paginationNavActions } 
+                                className="ml-auto" />
                         </TableRow>
                     )
                 }
@@ -369,16 +371,12 @@ const InterestifyTable = (props: TableProps) => {
     const DispatchContext = React.createContext(dispatch);
     const StateContext = React.createContext(initialState);
     
-    // first sort
+    // initial sort
     useEffect(() => {
-        if (sort) {
-            dispatch({
-                type: 'sort',
-                payload: {
-                    sortBy: state.sortBy
-                }
-            });
-        }
+        dispatch({
+            type: 'initialSort',
+            payload: {}
+        });
     }, []);
 
     return (

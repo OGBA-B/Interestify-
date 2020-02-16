@@ -5,6 +5,9 @@
 .App .App-link {
   color: #09d3ac;
 }
+.App .applet-title {
+  color: #82172B;
+}
 .App .elevated-table {
   box-shadow: 0 5px 15px 0;
 }
@@ -20,7 +23,7 @@
   position: relative;
 }
 .App .panel {
-  background-color: #F7F7F7;
+  background-color: #E7E7E7;
 }
 .App .panel::-webkit-scrollbar {
   width: 7px;
@@ -61,9 +64,13 @@
 .App .MuiTableFooter-root .footer-row:not(:last-child) td {
   font-weight: 600;
 }
-.App .pagination-actions-root {
-  display: inline-flex;
-  list-style: none;
+.App .MuiTablePagination-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  float: right;
+}
+.App .MuiTablePagination-toolbar p:first-of-type {
+  margin-left: auto;
 }
 
 /*# sourceMappingURL=App.css.map */

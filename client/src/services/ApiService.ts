@@ -8,4 +8,8 @@ export default class ApiService {
     searchTweets(query: string) {
         return API.get(`search/${query}`);
     }
+
+    getFollowers(query: string) {
+        return API.get(`followers/${query}`);
+    }
 }
