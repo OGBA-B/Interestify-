@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import SearchTweets from './Applets/SearchTweets';
-import SearchFollowers from './Applets/SearchFollowers';
+import SearchTweets from './applets/SearchTweets';
+import SearchFollowers from './applets/SearchFollowers';
 import { Grid, IconButton } from '@material-ui/core';
 
 function App() {
