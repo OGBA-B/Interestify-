@@ -9,7 +9,6 @@ CORS(app)
 def index():
     return render_template("index.html", token="Sample Token")
 
-
 @app.route("/search/<search_term>")
 def search_tweets(search_term=None):
     return jsonify(api.get_popular_tweets(search_term))
@@ -24,7 +23,6 @@ def get_followers(screen_name=None):
 def test(screen_name=None):
     value = request.get_json()
     return str(value["name"])
-
 
 if __name__ == "__main__":
     app.run(debug=True)
