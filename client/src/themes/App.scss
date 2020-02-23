@@ -1,0 +1,114 @@
+@import './variables';
+
+.App {
+  text-align: center;
+  color: $interestify-font-color;
+  
+  .App-link {
+    color: #09d3ac;
+  }
+  .applet-title {
+    color: $interestify-primary;
+  }
+
+  .elevated-table {
+    box-shadow: $box-shadow;
+  }
+
+  .btn-primary {
+    background-color: $interestify-primary;
+    color: $interestify-primary-font-color;
+
+    &:hover {
+      background-color: $interestify-primary-hover-color;
+    }
+  }
+
+  .dialogLoader {
+    color: $interestify-primary;
+    position: relative;
+  }
+
+  .panel {
+    background-color: $panel-background-color;
+
+    &::-webkit-scrollbar {
+        width: 7px;
+      height: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $interestify-secondary;
+      border-radius: 5px;
+    }
+  }
+
+  .MuiTable-root {
+    .MuiTableBody-root {
+      .MuiTableRow-root {
+        &:hover {
+          background-color: $table-row-hover-color;
+        }
+
+        .MuiTableCell-root {
+          .MuiIconButton-root {
+            .MuiIconButton-label {
+              &:hover {
+                color: $table-action-btn-hover-color;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .MuiTableHead-root {
+      .MuiTableRow-head {
+        background-color: $table-header-background-color;
+  
+        th {
+          color: $table-header-font-color;
+          font-weight: bolder;
+
+          .MuiTableSortLabel-root:hover, .MuiTableSortLabel-root.MuiTableSortLabel-active {
+            &, svg {
+              color: $table-header-font-color;
+            }
+          }
+        }
+      }
+    }
+
+    .light-row {
+      background-color: $table-row-secondary;
+    }
+
+    .dark-row {
+      background-color: $table-row-primary;
+    }
+  }
+
+  .MuiTableFooter-root {
+    &::before {
+      content: '.';
+    }
+
+    .footer-row:not(:last-child) {
+      background-color: $table-footer-background-color;
+      
+      td {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .MuiTablePagination-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    float: right;
+
+    p:first-of-type {
+      margin-left: auto;
+    }
+  }
+}

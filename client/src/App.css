@@ -1,22 +1,76 @@
 .App {
   text-align: center;
+  color: #000000;
 }
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
+.App .App-link {
   color: #09d3ac;
 }
+.App .applet-title {
+  color: #82172B;
+}
+.App .elevated-table {
+  box-shadow: 0 5px 15px 0;
+}
+.App .btn-primary {
+  background-color: #82172B;
+  color: #F0F0F0;
+}
+.App .btn-primary:hover {
+  background-color: #CF7D8C;
+}
+.App .dialogLoader {
+  color: #82172B;
+  position: relative;
+}
+.App .panel {
+  background-color: #E7E7E7;
+}
+.App .panel::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+.App .panel::-webkit-scrollbar-thumb {
+  background-color: #CF7D8C;
+  border-radius: 5px;
+}
+.App .MuiTable-root .MuiTableBody-root .MuiTableRow-root:hover {
+  background-color: #CFCFCF;
+}
+.App .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root .MuiIconButton-root .MuiIconButton-label:hover {
+  color: #82172B;
+}
+.App .MuiTable-root .MuiTableHead-root .MuiTableRow-head {
+  background-color: #82172B;
+}
+.App .MuiTable-root .MuiTableHead-root .MuiTableRow-head th {
+  color: #F0F0F0;
+  font-weight: bolder;
+}
+.App .MuiTable-root .MuiTableHead-root .MuiTableRow-head th .MuiTableSortLabel-root:hover, .App .MuiTable-root .MuiTableHead-root .MuiTableRow-head th .MuiTableSortLabel-root:hover svg, .App .MuiTable-root .MuiTableHead-root .MuiTableRow-head th .MuiTableSortLabel-root.MuiTableSortLabel-active, .App .MuiTable-root .MuiTableHead-root .MuiTableRow-head th .MuiTableSortLabel-root.MuiTableSortLabel-active svg {
+  color: #F0F0F0;
+}
+.App .MuiTable-root .light-row {
+  background-color: #F0F0F0;
+}
+.App .MuiTable-root .dark-row {
+  background-color: #BFBFBF;
+}
+.App .MuiTableFooter-root::before {
+  content: ".";
+}
+.App .MuiTableFooter-root .footer-row:not(:last-child) {
+  background-color: #CF7D8C;
+}
+.App .MuiTableFooter-root .footer-row:not(:last-child) td {
+  font-weight: 600;
+}
+.App .MuiTablePagination-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  float: right;
+}
+.App .MuiTablePagination-toolbar p:first-of-type {
+  margin-left: auto;
+}
+
+/*# sourceMappingURL=App.css.map */
