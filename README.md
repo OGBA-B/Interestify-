@@ -8,11 +8,7 @@ Install pipenv
 ```bash
 brew install pipenv
 ```
-Create virtual environment
-```bash
-pipenv --three
-```
-Install project dependencies
+Create virtual environment & Install project dependencies
 ```bash
 pipenv install --dev
 ```
